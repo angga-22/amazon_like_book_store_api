@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+enum OrderStatus {
+  // Order is created but not yet confirmed
+  CREATED 
+  // Order has been paid for, but not yet shipped
+  PAID
+  // Order has been shipped
+  SHIPPED
+  // Order has been delivered
+  DELIVERED
+  // Order cancel
+  CANCELLED
+  
+}
+model User {
+  id        Int       @id @default(autoincrement())
+  username  String    @unique
+  email     String    @unique
+  password  String
+  points    Int       @default(100)
+  orders    Order[]
+}
+
+model Book {
+  id          Int      @id @default(autoincrement())
+  coverImage  String?  @default("https://images-na.ssl-images-amazon.com/images/I/51Ga5GuElyL._AC_SX184_.jpg")
+  title       String
+  author      String
+  description String
+  price       Int
+  stocks      Int       @default(100)
+  tags        String[]
+  orders      Order[]
+}
+
+model Order {
+  id        Int         @id @default(autoincrement())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @default(now())
+  userId    Int
+  user      User        @relation(fields: [userId], references: [id])
+  bookId    Int
+  book      Book        @relation(fields: [bookId], references: [id])
+  quantity  Int
+  totalCost Int
+  status    OrderStatus @default(CREATED)
+}
+
+
+
+
+
+
+
+
+

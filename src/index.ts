@@ -22,7 +22,8 @@ const notFoundHandler = (req: Request, res: Response) => {
   );
 };
 
-const errorHandler = (err, req: Request, res: Response) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const errorHandler = (err: any, req: Request, res: Response) => {
   return ResponseBuilder.response(
     res,
     err?.statusCode ?? 500,

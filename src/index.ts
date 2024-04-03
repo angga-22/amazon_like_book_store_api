@@ -42,6 +42,6 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
   process.stdout.write(
-    `🚀 Server ready (environment: ${process.env.NODE_ENV}) at http://localhost:${PORT}/`
+    `🚀 Server ready (environment: ${process.env.NODE_ENV})`
   );
 });

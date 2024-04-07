@@ -2,8 +2,8 @@
   "name": "amazon_book_store_api",
   "version": "1.0.0",
   "description": "book store api for amazon",
-  "main": "index.ts",
   "repository": "",
+  "main": "src/index.ts",
   "author": "Dev <anggasp.unib@gmail.com>",
   "license": "MIT",
   "private": true,
@@ -45,12 +45,13 @@
     "build": "rm -rf ./dist && tsc",
     "lint": "eslint . --ext .ts",
     "format": "eslint . --ext .ts --fix",
-    "start": "yarn build && node dist/index.ts",
+    "start": "yarn build && node src/index.ts",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "run:migrate": "npx prisma migrate dev --name",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "postinstall": "prisma generate"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

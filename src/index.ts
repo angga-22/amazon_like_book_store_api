@@ -40,7 +40,7 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+app.listen(PORT || 3000, () => {
   process.stdout.write(
     `🚀 Server ready (environment: ${process.env.NODE_ENV})`
   );
